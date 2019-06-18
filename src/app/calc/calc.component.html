@@ -1,0 +1,72 @@
+<div class="example-container">
+  <form #expForm="ngForm" novalidate>
+    <div
+      cdkDropList
+      [cdkDropListData]="expressionsList"
+      class="example-list"
+      id="exp"
+      [cdkDropListConnectedTo]="firstList"
+      #secondList="cdkDropList"
+      cdkDropListOrientation="horizontal"
+      (cdkDropListDropped)="drop($event)"
+    >
+      <div class="example-box" *ngFor="let item of expressionsList" cdkDrag>
+        <p>{{ item.name }}</p>
+        <div
+          cdkDrag
+          class="form-group"
+          *ngFor="let number of [].constructor(item.args); let i = index"
+        >
+          <input
+            class="form-control"
+            ngModel
+            id="argt"
+            type="text"
+            name="argt{{ i }}"
+            #inputName
+            cdkDrag
+          />
+        </div>
+        <!-- <p>{{ expForm.value | json }}</p> -->
+        <button (click)="this[item.functName] (expForm)">
+          {{ item.name }}
+        </button>
+      </div>
+    </div>
+    <p></p>
+
+    <p></p>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon3">RESULT</span>
+      </div>
+      <input
+        type="text"
+        readonly
+        class="form-control input-shadow"
+        id="result"
+        name="result"
+        [ngModel]="result"
+        aria-describedby="basic-addon3"
+      />
+    </div>
+  </form>
+  <div class="example-container">
+    <div
+      cdkDropList
+      [cdkDropListData]="functionsList"
+      class="example-list-fxn"
+      cdkDropListSortingDisabled
+      [cdkDropListConnectedTo]="secondList"
+      #firstList="cdkDropList"
+      cdkDropListOrientation="horizontal"
+      (cdkDropListDropped)="drop($event)"
+    >
+      <div class="example-box-fxn" *ngFor="let item of functionsList" cdkDrag>
+        <i class="{{ item.icon }} m-1"></i>
+        {{ item.name }}
+      </div>
+    </div>
+  </div>
+</div>
