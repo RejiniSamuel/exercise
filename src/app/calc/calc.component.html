@@ -13,7 +13,6 @@
       <div class="example-box" *ngFor="let item of expressionsList" cdkDrag>
         <p>{{ item.name }}</p>
         <div
-          cdkDrag
           class="form-group"
           *ngFor="let number of [].constructor(item.args); let i = index"
         >
@@ -24,13 +23,15 @@
             type="text"
             name="argt{{ i }}"
             #inputName
-            cdkDrag
           />
         </div>
         <!-- <p>{{ expForm.value | json }}</p> -->
-        <button (click)="this[item.functName] (expForm)">
-          {{ item.name }}
+        <button (click)="getFunct(expForm, item.functName)">
+          {{ item.functName }}
         </button>
+        <!--  <button (click)="this[item.functName] (expForm)">
+          {{ item.name }}
+        </button> -->
       </div>
     </div>
     <p></p>

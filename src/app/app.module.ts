@@ -14,9 +14,10 @@ import {
 
 import { AppComponent } from "./app.component";
 import { CalcComponent } from "./calc/calc.component";
+import { AddButtonComponent } from "./add-button/add-button.component";
 
 @NgModule({
-  declarations: [AppComponent, CalcComponent],
+  declarations: [AppComponent, CalcComponent, AddButtonComponent],
   imports: [
     BrowserModule,
     FormsModule,
